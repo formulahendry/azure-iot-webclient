@@ -12,6 +12,7 @@ class MonitorForm extends Component {
   handleChange({refreshResult = false}) {
     this.props.onUserInput(
       ReactDOM.findDOMNode(this.refs.connectionStringInput).value,
+      ReactDOM.findDOMNode(this.refs.consumerGroupInput).value,
       refreshResult
     );
   }
@@ -21,9 +22,13 @@ class MonitorForm extends Component {
       <div className="MonitorForm">
         <Form horizontal>
           <FormGroup>
-            <Col sm={8} smOffset={2} xs={10} xsOffset={1}>
+            <Col sm={7} smOffset={1} xs={12}>
               <ControlLabel>IoT Hub Connection String</ControlLabel>
               <FormControl type="text" placeholder="connectionString" value={this.props.connectionString} onChange={() => { this.handleChange({ refreshResult: false }) } } ref="connectionStringInput"/>
+            </Col>
+            <Col sm={3} xs={12}>
+              <ControlLabel>Consumer Group</ControlLabel>
+              <FormControl type="text" placeholder="consumerGroup" value={this.props.consumerGroup} onChange={() => { this.handleChange({ refreshResult: false }) } } ref="consumerGroupInput"/>
             </Col>
           </FormGroup>
           <FormGroup>

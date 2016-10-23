@@ -19,7 +19,7 @@ class MonitorResult extends Component {
   }
 
   monitorD2CMessage() {
-    var source = new EventSource(`//azure-iot-web-api.azurewebsites.net/message/monitor?connectionString=${encodeURIComponent(this.props.connectionString)}`);
+    var source = new EventSource(`//azure-iot-web-api.azurewebsites.net/message/monitor?consumerGroup=${this.props.consumerGroup}&connectionString=${encodeURIComponent(this.props.connectionString)}`);
     source.onmessage = (event) => {
       console.log(event.data)
       this.setState({
