@@ -27,7 +27,7 @@ class D2CMessageForm extends Component {
             </Col>
           </FormGroup>
           <FormGroup>
-            <Col sm={4} smOffset={4} xs={9} xsOffset={1}>
+            <Col sm={4} smOffset={4} xs={7} xsOffset={1}>
               <FormControl type="text" placeholder="d2cMessage" value={this.props.d2cMessage} onChange={() => { this.handleChange({ refreshResult: false }) } } ref="d2cMessageInput"/>
             </Col>
             <Col sm={1} xs={1} id="send">
