@@ -1,5 +1,7 @@
-Source Code for [Website](https://vsce.github.io/) of Visual Studio Code Extension Download Count
+This repo is the Source Code for [Website](https://azure-iot.github.io/) of Azure IoT Web Client.
+
+The repo of GitHub Pages is [here](https://github.com/azure-iot/azure-iot.github.io).
 
 This project is bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-If you want to see download count data of your extension in the [Website](https://vsce.github.io/), please send a PR [here](https://github.com/formulahendry/vsce-website/blob/master/src/assets/extensions.json) or submit a [request](https://github.com/formulahendry/vsce-website/issues).
+If you want to contribute to this repo, you could follow the instruction of Create React App to set up development environment.

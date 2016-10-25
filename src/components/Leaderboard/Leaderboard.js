@@ -23,6 +23,7 @@ class Leaderboard extends Component {
     return (
       <div className="Leaderboard">
         <h2>Send Cloud-To-Device Message</h2>
+        <p>Coming soon!</p>
       </div>
     );
   }
