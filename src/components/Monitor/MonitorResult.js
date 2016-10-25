@@ -19,6 +19,17 @@ class MonitorResult extends Component {
   }
 
   monitorD2CMessage() {
+    if (!this.props.consumerGroup || !this.props.connectionString) {
+      this.setState({
+        result: 'Input could not be empty.'
+      });
+      return;
+    }
+    if (typeof (EventSource) === "undefined") {
+      this.setState({
+        result: this.state.result = 'Currently, the monitor function does not support your browser.\nPlease use Chrome, Firefox, Opera or Safari.\nThe support for IE/Edge is coming soon.'
+      })
+    }
     var source = new EventSource(`//azure-iot-web-api.azurewebsites.net/message/monitor?consumerGroup=${this.props.consumerGroup}&connectionString=${encodeURIComponent(this.props.connectionString)}`);
     source.onmessage = (event) => {
       console.log(event.data)
@@ -30,8 +41,10 @@ class MonitorResult extends Component {
 
   render() {
     return (
-      <div className="MonitorResult">      
+      <div className="MonitorResult">
+        {this.state.result &&
           <pre className="ResultArea">{this.state.result}</pre>
+        }
       </div>
     );
   }

@@ -1,6 +1,13 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router'
-import { Col, Glyphicon } from 'react-bootstrap';
+import React, {
+  Component
+} from 'react';
+import {
+  Link
+} from 'react-router'
+import {
+  Col,
+  Glyphicon
+} from 'react-bootstrap';
 import $ from 'jquery';
 import './D2CMessageResult.css';
 
@@ -15,11 +22,17 @@ class D2CMessageResult extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.refreshResult === true) {
-        this.sendD2CMessage();
+      this.sendD2CMessage();
     }
   }
 
   sendD2CMessage() {
+    if (!this.props.d2cMessage || !this.props.deviceConnectionString) {
+      this.setState({
+        result: 'Input could not be empty.'
+      });
+      return;
+    }
     this.setState({
       result: 'Sending message to IoT Hub...'
     });
@@ -43,11 +56,19 @@ class D2CMessageResult extends Component {
 
 
   render() {
-    return (
-      <div className="D2CMessageResult">      
-          <h4>{this.state.result}</h4>
-          <div dangerouslySetInnerHTML={{__html: this.state.resultDetail}} />
-      </div>
+    return ( <
+      div className = "D2CMessageResult" >
+      <
+      h4 > {
+        this.state.result
+      } < /h4> <
+      div dangerouslySetInnerHTML = {
+        {
+          __html: this.state.resultDetail
+        }
+      }
+      /> <
+      /div>
     );
   }
 }

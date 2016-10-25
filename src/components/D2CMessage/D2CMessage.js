@@ -7,7 +7,7 @@ class D2CMessage extends Component {
     super(props);
     this.state = {
       d2cMessage: "test message",
-      deviceConnectionString: "HostName=iot-hub-hendry.azure-devices.net;DeviceId=myFirstDevice;SharedAccessKey=O8u6OXbQt/bJ4SkmO7E+GyP0H1PgIlTx/wqMxC0J9zE=",
+      deviceConnectionString: props.location.query.debug === "true" ? "HostName=iot-hub-hendry.azure-devices.net;DeviceId=myFirstDevice;SharedAccessKey=O8u6OXbQt/bJ4SkmO7E+GyP0H1PgIlTx/wqMxC0J9zE=" : "",
       refreshResult: false
     };
     this.handleUserInput = this.handleUserInput.bind(this);

@@ -27,6 +27,9 @@ class App extends Component {
                 <NavItem eventKey={3}>C2DMessage</NavItem>
               </IndexLinkContainer>
             </Nav>
+            <Nav pullRight>
+              <NavItem eventKey={1} href="https://github.com/formulahendry/azure-iot-webclient">GitHub</NavItem>
+            </Nav>  
           </Navbar.Collapse>
         </Navbar>
         {this.props.children}

@@ -24,7 +24,7 @@ class MonitorForm extends Component {
           <FormGroup>
             <Col sm={7} smOffset={1} xs={12}>
               <ControlLabel>IoT Hub Connection String</ControlLabel>
-              <FormControl type="text" placeholder="connectionString" value={this.props.connectionString} onChange={() => { this.handleChange({ refreshResult: false }) } } ref="connectionStringInput"/>
+              <FormControl type="text" placeholder="Connection String" value={this.props.connectionString} onChange={() => { this.handleChange({ refreshResult: false }) } } ref="connectionStringInput"/>
             </Col>
             <Col sm={3} xs={12}>
               <ControlLabel>Consumer Group</ControlLabel>

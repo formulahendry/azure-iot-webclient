@@ -23,7 +23,7 @@ class D2CMessageForm extends Component {
           <FormGroup>
             <Col sm={8} smOffset={2} xs={10} xsOffset={1}>
               <ControlLabel>Device Connection String</ControlLabel>
-              <FormControl type="text" placeholder="deviceConnectionString" value={this.props.deviceConnectionString} onChange={() => { this.handleChange({ refreshResult: false }) } } ref="deviceConnectionStringInput"/>
+              <FormControl type="text" placeholder="Device Connection String" value={this.props.deviceConnectionString} onChange={() => { this.handleChange({ refreshResult: false }) } } ref="deviceConnectionStringInput"/>
             </Col>
           </FormGroup>
           <FormGroup>
