@@ -36,6 +36,11 @@ class D2CMessageResult extends Component {
     this.setState({
       result: 'Sending message to IoT Hub...'
     });
+    try {
+      ga('send', 'event', 'D2CMessage', 'send');
+    }
+    catch (e) {
+    }
     $.post(`https://azure-iot-web-api.azurewebsites.net/message?message=${this.props.d2cMessage}&connectionString=${encodeURIComponent(this.props.deviceConnectionString)}`)
       .done((data) => {
         this.setState({
@@ -45,8 +50,6 @@ class D2CMessageResult extends Component {
       })
       .fail((xhr, textStatus, errorThrown) => {
         this.setState({
-          //result: 'Message fail to IoT Hub.'
-          //result: 'aa'
           result: 'Fail to send message to IoT Hub.',
           resultDetail: xhr.responseText
         })

@@ -29,6 +29,12 @@ class MonitorResult extends Component {
       this.setState({
         result: this.state.result = 'Currently, the monitor function does not support your browser.\nPlease use Chrome, Firefox, Opera or Safari.\nThe support for IE/Edge is coming soon.'
       })
+      return;
+    }
+    try {
+      ga('send', 'event', 'Monitor', 'start');
+    }
+    catch (e) {
     }
     var source = new EventSource(`//azure-iot-web-api.azurewebsites.net/message/monitor?consumerGroup=${this.props.consumerGroup}&connectionString=${encodeURIComponent(this.props.connectionString)}`);
     source.onmessage = (event) => {
