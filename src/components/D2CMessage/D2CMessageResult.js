@@ -30,6 +30,7 @@ class D2CMessageResult extends Component {
       result: 'Sending message to IoT Hub...'
     });
     try {
+      // eslint-disable-next-line
       ga('send', 'event', 'D2CMessage', 'send');
     }
     catch (e) {

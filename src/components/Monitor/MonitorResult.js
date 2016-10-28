@@ -32,6 +32,7 @@ class MonitorResult extends Component {
       return;
     }
     try {
+      // eslint-disable-next-line
       ga('send', 'event', 'Monitor', 'start');
     }
     catch (e) {

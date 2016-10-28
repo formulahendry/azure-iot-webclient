@@ -23,8 +23,8 @@ class App extends Component {
               <IndexLinkContainer to="/monitor">
                 <NavItem eventKey={2}>Monitor</NavItem>
               </IndexLinkContainer>
-              <IndexLinkContainer to="/c2d-message">
-                <NavItem eventKey={3}>C2DMessage</NavItem>
+              <IndexLinkContainer to="/parking">
+                <NavItem eventKey={3}>Parking</NavItem>
               </IndexLinkContainer>
             </Nav>
             <Nav pullRight>
