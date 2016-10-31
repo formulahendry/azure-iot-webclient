@@ -26,6 +26,7 @@ class App extends Component {
               <IndexLinkContainer to="/parking">
                 <NavItem eventKey={3}>Parking</NavItem>
               </IndexLinkContainer>
+              <NavItem eventKey={3} href="https://marketplace.visualstudio.com/items?itemName=formulahendry.azure-iot-toolkit">Visual Studio Code Extension</NavItem>
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={1} href="https://github.com/formulahendry/azure-iot-webclient">GitHub</NavItem>

@@ -23,7 +23,7 @@ class Parking extends Component {
 
   render() {
     return (
-      <div className="Parking">
+      <div className="ParkingPage">
         <h2>Parking Status Monitor</h2>
         <ParkingForm 
           connectionString={this.state.connectionString}
