@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
-import { Col, Glyphicon, Row } from 'react-bootstrap';
-import $ from 'jquery';
 import './ParkingResult.css';
-import car from './car.png';
 
 class ParkingResult extends Component {
   constructor(props) {
@@ -29,7 +25,7 @@ class ParkingResult extends Component {
     }
     if (typeof (EventSource) === "undefined") {
       this.setState({
-        result: this.state.result = 'Currently, the Parking function does not support your browser.\nPlease use Chrome, Firefox, Opera or Safari.\nThe support for IE/Edge is coming soon.'
+        result: 'Currently, the Parking function does not support your browser.\nPlease use Chrome, Firefox, Opera or Safari.\nThe support for IE/Edge is coming soon.'
       })
       return;
     }
@@ -37,9 +33,9 @@ class ParkingResult extends Component {
     source.onmessage = (event) => {
       console.log(event.data)
       this.setState({
-        result: this.state.result += '\n' + event.data
+        result: this.state.result + '\n' + event.data
       })
-      if (event.data.indexOf('car') >= 0) {
+      if (this.hasCar(event.data)) {
         this.setState({
           hasCar: true
         })
@@ -49,6 +45,23 @@ class ParkingResult extends Component {
         })
       }
     };
+  }
+
+  hasCar(data) {
+    let matchedData = 'car';
+    if (event.data.indexOf(matchedData) >= 0) {
+      return true;
+    }
+    try {
+      let json = JSON.parse(event.data);  
+      let str = String.fromCharCode.apply(null, json.data)
+      if (str.indexOf(matchedData) >= 0) {
+        return true;
+      }
+    }
+    catch (e) {
+    }
+    return false;
   }
 
   render() {

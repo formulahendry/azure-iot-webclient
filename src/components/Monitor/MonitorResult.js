@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
-import { Col, Glyphicon } from 'react-bootstrap';
-import $ from 'jquery';
 import './MonitorResult.css';
 
 class MonitorResult extends Component {
@@ -27,7 +24,7 @@ class MonitorResult extends Component {
     }
     if (typeof (EventSource) === "undefined") {
       this.setState({
-        result: this.state.result = 'Currently, the monitor function does not support your browser.\nPlease use Chrome, Firefox, Opera or Safari.\nThe support for IE/Edge is coming soon.'
+        result: 'Currently, the monitor function does not support your browser.\nPlease use Chrome, Firefox, Opera or Safari.\nThe support for IE/Edge is coming soon.'
       })
       return;
     }
@@ -41,7 +38,7 @@ class MonitorResult extends Component {
     source.onmessage = (event) => {
       console.log(event.data)
       this.setState({
-        result: this.state.result += '\n' + event.data
+        result: this.state.result + '\n' + event.data
       })
     };
   }

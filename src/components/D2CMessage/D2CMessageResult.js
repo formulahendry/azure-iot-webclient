@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
-import { Col, Glyphicon } from 'react-bootstrap';
 import $ from 'jquery';
 import './D2CMessageResult.css';
 
