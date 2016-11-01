@@ -48,7 +48,7 @@ class ParkingResult extends Component {
   }
 
   hasCar(data) {
-    let matchedData = 'car';
+    let matchedData = '-';
     if (event.data.indexOf(matchedData) >= 0) {
       return true;
     }
