@@ -8,16 +8,16 @@ class Parking extends Component {
     this.state = {
       connectionString: props.location.query.debug === "true" ? "HostName=iot-hub-hendry.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=FE98m4TB4e5J/RzCpgtMV8+WXiXuZeRnBN8WzlaZTJQ=" : "",
       consumerGroup: "$Default",
-      refreshResult: false
+      action: ''
     };
     this.handleUserInput = this.handleUserInput.bind(this);
   }
 
-  handleUserInput(connectionString, consumerGroup, refreshResult) {
+  handleUserInput(connectionString, consumerGroup, action) {
     this.setState({
       connectionString: connectionString,
       consumerGroup: consumerGroup,
-      refreshResult: refreshResult
+      action: action
     });
   }
 
@@ -33,7 +33,7 @@ class Parking extends Component {
         <ParkingResult
           connectionString={this.state.connectionString}
           consumerGroup={this.state.consumerGroup}
-          refreshResult={this.state.refreshResult}
+          action={this.state.action}
         />
       </div>
     );

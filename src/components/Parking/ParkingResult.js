@@ -4,6 +4,7 @@ import './ParkingResult.css';
 class ParkingResult extends Component {
   constructor(props) {
     super(props);
+    this.source = null;
     this.state = {
       result: "",
       carStatus: "false"
@@ -11,8 +12,12 @@ class ParkingResult extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.refreshResult === true) {
+    if (nextProps.action === 'Start') {
+      console.log('Start')
       this.ParkingD2CMessage();
+    } else if (nextProps.action === 'Stop') {
+      console.log('Stop')
+      this.source.close();
     }
   }
 
@@ -29,8 +34,8 @@ class ParkingResult extends Component {
       })
       return;
     }
-    var source = new EventSource(`//azure-iot-web-api.azurewebsites.net/message/monitor?consumerGroup=${this.props.consumerGroup}&connectionString=${encodeURIComponent(this.props.connectionString)}`);
-    source.onmessage = (event) => {
+    this.source = new EventSource(`//azure-iot-web-api.azurewebsites.net/message/monitor?consumerGroup=${this.props.consumerGroup}&connectionString=${encodeURIComponent(this.props.connectionString)}`);
+    this.source.onmessage = (event) => {
       console.log(`[raw data]: ${event.data}`)
       this.setState({
         result: this.state.result + '\n' + event.data
