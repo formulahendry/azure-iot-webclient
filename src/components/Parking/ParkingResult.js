@@ -6,13 +6,13 @@ class ParkingResult extends Component {
     super(props);
     this.state = {
       result: "",
-      hasCar: false
+      carStatus: "false"
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.refreshResult === true) {
-        this.ParkingD2CMessage();
+      this.ParkingD2CMessage();
     }
   }
 
@@ -31,48 +31,54 @@ class ParkingResult extends Component {
     }
     var source = new EventSource(`//azure-iot-web-api.azurewebsites.net/message/monitor?consumerGroup=${this.props.consumerGroup}&connectionString=${encodeURIComponent(this.props.connectionString)}`);
     source.onmessage = (event) => {
-      console.log(event.data)
+      console.log(`[raw data]: ${event.data}`)
       this.setState({
         result: this.state.result + '\n' + event.data
       })
-      if (this.hasCar(event.data)) {
+      let status = this.getCarStatus(event.data);
+      if (status !== '' && status !== this.state.carStatus) {
         this.setState({
-          hasCar: true
-        })
-      } else {
-        this.setState({
-          hasCar: false
+          carStatus: status
         })
       }
     };
   }
 
-  hasCar(data) {
-    let matchedData = '-';
-    if (event.data.indexOf(matchedData) >= 0) {
-      return true;
-    }
-    try {
-      let json = JSON.parse(event.data);  
-      let str = String.fromCharCode.apply(null, json.data)
-      if (str.indexOf(matchedData) >= 0) {
-        return true;
+  getCarStatus(data) {
+    let status = this.getStatus(data);
+    if (status === '') {
+      try {
+        let json = JSON.parse(data);
+        let str = String.fromCharCode.apply(null, json.data)
+        console.log(`[string data]: ${str}`)
+        status = this.getStatus(str);
+      }
+      catch (e) {
       }
     }
-    catch (e) {
+    return status;
+  }
+
+  getStatus(str) {
+    if (str.toLowerCase().indexOf('init') >= 0 || str.toLowerCase().indexOf('disturb') >= 0) {
+      return 'init';
+    } else if (str.toLowerCase().indexOf('false') >= 0) {
+      return 'false';
+    } else if (str.toLowerCase().indexOf('true') >= 0) {
+      return 'true';
     }
-    return false;
+    return '';
   }
 
   render() {
     return (
-      <div className="ParkingResult">    
+      <div className="ParkingResult">
         <div className="parking">
           <div className="parking-row">
             <div className="parking-road">&uarr;</div>
             <div className="parking-edge"></div>
             <div className="parking-cube">
-              <div className={this.state.hasCar ? ("parking-up na") : ("parking-up")}>A-01</div>
+              <div className={`parking-up ${this.state.carStatus}`}><div className='scan'></div>A-01</div>
               <div className="parking-down">A-02</div>
             </div>
             <div className="parking-cube">
@@ -80,7 +86,7 @@ class ParkingResult extends Component {
               <div className="parking-down">A-04</div>
             </div>
             <div className="parking-cube">
-              <div className="parking-up na">A-05</div>
+              <div className="parking-up true">A-05</div>
               <div className="parking-down">A-06</div>
             </div>
             <div className="parking-cube">
@@ -93,7 +99,7 @@ class ParkingResult extends Component {
             </div>
             <div className="parking-cube">
               <div className="parking-up">A-11</div>
-              <div className="parking-down na">A-12</div>
+              <div className="parking-down true">A-12</div>
             </div>
             <div className="parking-cube">
               <div className="parking-up">A-13</div>

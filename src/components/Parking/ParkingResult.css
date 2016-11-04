@@ -132,11 +132,44 @@
     text-align: center;
     color: orange;
     line-height: 100px;
+    position: relative;
 }
 
-.parking-up.na,
-.parking-down.na {
+.parking-up.true,
+.parking-down.true {
     background-image: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(255, 165, 0, 0.5) 8px, rgba(255, 165, 0, 0.5) 10px);
+}
+
+.parking-up.init .scan,
+.parking-down.init .scan{
+    position: absolute;
+    right: 0;
+    top: 80px;
+    z-index: 100;
+    width: 60px;
+    height: 2px;
+    background: rgba(0, 255, 255, 0.35);
+    box-shadow: 0 0 5px #0ff;
+    -webkit-animation: scanBubble 1200ms infinite  normal ease-out;
+    animation: scanBubble 1200ms infinite  normal ease-out;
+}
+
+@-webkit-keyframes scanBubble {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: 94px;
+    }
+}
+
+@keyframes scanBubble {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: 94px;
+    }
 }
 
 .ParkingResult .console {
